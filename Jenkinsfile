@@ -1,11 +1,13 @@
 pipeline {
     agent any
 
+    /*
     tools {
-        // Menggunakan instalasi Maven & JDK yang telah dikonfigurasi di Global Tool Configuration Jenkins
-        maven 'Maven_3.9' // Sesuaikan dengan nama Tool Maven di Jenkins Anda
-        jdk 'JDK_21'      // Sesuaikan dengan nama Tool JDK di Jenkins Anda
+        // Aktifkan jika Anda mengonfigurasi Tool Maven & JDK di Manage Jenkins -> Tools:
+        maven 'Maven_3.9'
+        jdk 'JDK_21'
     }
+    */
 
     environment {
         // Menginstruksikan Playwright untuk mendownload browser ke folder lokal jika diperlukan
@@ -31,10 +33,9 @@ pipeline {
         stage('Execute Playwright Tests') {
             steps {
                 echo 'Menjalankan skenario otomatisasi pengujian...'
-                // Menggunakan `catchError` agar kegagalan test tidak langsung menghentikan pipeline (build aborted),
-                // sehingga tahapan publish report di bagian `post` tetap berjalan.
+                // Menjalankan test dalam mode headless agar aman di lingkungan CI lokal/server Windows
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    bat 'mvn test'
+                    bat 'mvn test -Dheadless=true'
                 }
             }
         }
