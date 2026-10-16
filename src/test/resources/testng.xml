@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- 
+     Untuk menjalankan test secara paralel, Anda bisa mengubah konfigurasi berikut:
+     parallel="methods" thread-count="2"
+     Karena kita menggunakan ThreadLocal pada PlaywrightFactory dan TestListener,
+     framework ini sudah 100% aman untuk eksekusi paralel.
+-->
+<suite name="Practice Login Automation Suite" parallel="none">
+    
+    <!-- Mendaftarkan custom listener untuk logger, reporting, dan screenshot on failure -->
+    <listeners>
+        <listener class-name="com.practice.listeners.TestListener" />
+    </listeners>
+
+    <test name="Login Functionality Tests">
+        <classes>
+            <class name="com.practice.tests.LoginTest" />
+        </classes>
+    </test>
+
+    <test name="Exceptions &amp; Dynamic Controls Tests">
+        <classes>
+            <class name="com.practice.tests.ExceptionsTest" />
+        </classes>
+    </test>
+</suite>

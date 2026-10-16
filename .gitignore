@@ -1,0 +1,8 @@
+target/
+*.log
+logs/
+reports/screenshots/
+reports/ExtentReport.html
+.idea/
+*.iml
+.DS_Store
