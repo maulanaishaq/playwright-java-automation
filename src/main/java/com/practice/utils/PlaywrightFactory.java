@@ -24,8 +24,9 @@ public class PlaywrightFactory {
      * @return Page object untuk thread saat ini.
      */
     public static Page initBrowser() {
-        String browserName = ConfigReader.getProperty("browser");
-        String headlessStr = ConfigReader.getProperty("headless");
+        // Prioritaskan nilai dari parameter CLI (-Dbrowser=... -Dheadless=...) jika ada
+        String browserName = System.getProperty("browser", ConfigReader.getProperty("browser"));
+        String headlessStr = System.getProperty("headless", ConfigReader.getProperty("headless"));
         boolean isHeadless = headlessStr != null && Boolean.parseBoolean(headlessStr);
 
         log.info("Menginisialisasi Playwright...");
