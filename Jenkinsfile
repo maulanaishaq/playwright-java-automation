@@ -1,13 +1,11 @@
 pipeline {
     agent any
 
-    /*
     tools {
-        // Aktifkan jika Anda mengonfigurasi Tool Maven & JDK di Manage Jenkins -> Tools:
-        maven 'Maven_3.9'
-        jdk 'JDK_21'
+        // Nama ini harus SAMA PERSIS dengan yang terdaftar di Manage Jenkins -> Tools
+        maven 'MAVEN-3.9.11'  // sesuai hudson.tasks.Maven.xml
+        jdk 'JDK-21'          // sesuai config.xml (nama: JDK-21)
     }
-    */
 
     environment {
         // Menginstruksikan Playwright untuk mendownload browser ke folder lokal jika diperlukan
